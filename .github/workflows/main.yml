@@ -20,7 +20,7 @@ jobs:
     - name: Build the Jar
       run: |
          chmod +x gradlew
-         ./gradlew sembleRelease --no-daemon
+         ./gradlew assembleRelease --no-daemon
 
     - name: Upload APK
       uses: actions/upload-artifact@main
