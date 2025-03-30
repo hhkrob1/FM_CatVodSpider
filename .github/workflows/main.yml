@@ -1,0 +1,29 @@
+name: Spider_APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      
+    - name: set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '18'
+        distribution: 'temurin'
+
+    - name: Build the Jar
+      run: |
+         chmod +x gradlew
+         ./gradlew sembleRelease --no-daemon
+
+    - name: Upload APK
+      uses: actions/upload-artifact@main
+      with:
+        name: Spider_APK
+        path: ./app/build/outputs/apk/release/app-release-unsigned.apk
